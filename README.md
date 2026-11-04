@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StudyTrack – Student Study Planner
 
-## Getting Started
+StudyTrack is a web application that helps students organize schoolwork and manage their time. Students can keep track of assignments, plan study activities, remember deadlines, and monitor their progress. The app is designed to work on phones and computers.
 
-First, run the development server:
+## Problem
+
+Students can find it difficult to manage assignments, study time, and deadlines. StudyTrack helps them stay organized, avoid missed assignments, and complete their schoolwork on time.
+
+## MVP features
+
+- Create an account, log in, and log out
+- Add, view, edit, and delete assignments
+- Plan and manage study activities
+- See upcoming assignment deadlines
+- Mark assignments complete and track progress
+
+## Planned data
+
+- **Assignment:** A student's task, details, due date, and completion status
+- **Study session:** A planned study activity and its scheduled time
+
+The team will confirm the final data model in the project specification.
+
+## Technology
+
+- Next.js with the App Router
+- TypeScript
+- Tailwind CSS
+- Database: **To be decided by the team**
+- Authentication: **To be decided by the team** (Auth.js v5 or Clerk)
+- Hosting: **To be decided by the team**
+
+## Getting started
+
+### Prerequisites
+
+- Node.js compatible with the installed Next.js version
+- npm
+
+### Install and run locally
+
+```bash
+git clone https://github.com/JaOnwude/studytrack-student-planner.git
+cd studytrack-student-planner
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Available scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Starts the local development server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Builds the application for production.
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+Runs the production build.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Checks the code with ESLint, if this script is configured in `package.json`.
 
-## Deploy on Vercel
+## Team members
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Onwude James Uchenna** 
+- **Nsikak Christopher Eyo** 
+- **Precious Ayomide Fabiyi** 
+- **Phoebe** — Team member; participation pending
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Update team roles and participation as the team agrees.
+
+## Team workflow
+
+- Create a feature branch for each task, such as `feature/assignment-crud`.
+- Do not push feature work directly to `main`.
+- Open a pull request to merge work into `main`.
+- Have at least one other team member review each pull request before merging.
+- Track tasks and blockers on the GitHub Project board.
+
+## Project links
+
+- Repository: [StudyTrack on GitHub](https://github.com/JaOnwude/studytrack-student-planner)
+- GitHub Project board: To be added
+- Project specification: To be added
+- Deployed application: To be added
+
+## Next.js resources
+
+This project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+- [Next.js documentation](https://nextjs.org/docs)
+- [Next.js App Router guide](https://nextjs.org/docs/app)
+
+## Project status
+
+The team selected StudyTrack as its project direction. The MVP scope, database, authentication provider, and hosting platform will be finalized in the project specification.
