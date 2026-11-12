@@ -26,9 +26,24 @@ The team will confirm the final data model in the project specification.
 - Next.js with the App Router
 - TypeScript
 - Tailwind CSS
-- Database: **To be decided by the team**
-- Authentication: **To be decided by the team** (Auth.js v5 or Clerk)
-- Hosting: **To be decided by the team**
+- Database: Supabase PostgreSQL
+- ORM and migrations: Prisma 7 (`prisma/schema.prisma`)
+- Authentication: Auth.js v5 with email and password (Credentials provider, bcrypt-hashed passwords, JWT session cookie)
+- Hosting: Vercel
+
+## Database and sign-in setup
+
+1. Copy `.env.example` to `.env` and fill in `DATABASE_URL`, `DIRECT_URL`, and `AUTH_SECRET`. The team lead shares these privately. Never commit `.env` or post it in chat.
+2. Run `npm install`. This also generates the Prisma client into `generated/`.
+3. Run `npm run db:migrate` to create or update your database tables.
+4. Run `npm run dev` and open `/register`.
+
+### Rules for features that touch student data
+
+- Get the signed-in student with `requireUser()` (pages and server actions) or `getCurrentUser()` (API routes; return 401 when it is `null`) from `lib/dal.ts`.
+- Always take the user id from that helper, never from a form, the request body, or the URL, and include it in every query: `prisma.assignment.findMany({ where: { userId: user.id } })`. For updates and deletes, use `updateMany`/`deleteMany` with both `id` and `userId` so students can only change their own records.
+- To change tables, edit `prisma/schema.prisma` and run `npm run db:migrate -- --name describe-change`, then commit the new folder in `prisma/migrations/`. Don't edit tables in the Supabase dashboard.
+- New private pages go under a prefix listed in `PROTECTED_PREFIXES` in `auth.config.ts` (`/dashboard`, `/assignments`, `/study-sessions`).
 
 ## Getting started
 
