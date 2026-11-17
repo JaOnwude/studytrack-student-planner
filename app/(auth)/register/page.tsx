@@ -4,7 +4,7 @@ import { AuthCard } from "@/components/auth/auth-card";
 import { RegisterForm } from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
-  title: "Create account | StudyTrack",
+  title: "Create account",
 };
 
 export default function RegisterPage() {

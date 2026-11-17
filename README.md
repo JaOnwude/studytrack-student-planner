@@ -38,6 +38,18 @@ The team will confirm the final data model in the project specification.
 3. Run `npm run db:migrate` to create or update your database tables.
 4. Run `npm run dev` and open `/register`.
 
+### API routes
+
+All assignment routes need a signed-in student (401 otherwise) and only ever see that student's assignments. Dates are `"YYYY-MM-DD"`; status is `PENDING` or `COMPLETED`.
+
+| Method and path | Body | Returns |
+|---|---|---|
+| `GET /api/hello` | | `{ message }` |
+| `GET /api/assignments` | | `{ assignments: [...] }`, soonest due first |
+| `POST /api/assignments` | `{ title, description?, dueDate }` | `201 { assignment }`, or `400 { error, fieldErrors }` |
+| `PATCH /api/assignments/:id` | any of `{ title, description, dueDate, status }` | `{ assignment }`, or 404 if it isn't yours |
+| `DELETE /api/assignments/:id` | | `204`, or 404 if it isn't yours |
+
 ### Rules for features that touch student data
 
 - Get the signed-in student with `requireUser()` (pages and server actions) or `getCurrentUser()` (API routes; return 401 when it is `null`) from `lib/dal.ts`.
