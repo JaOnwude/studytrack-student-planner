@@ -191,9 +191,9 @@ Authentication-specific fields will depend on the provider selected by the team.
 - Framework: Next.js App Router
 - Language: TypeScript
 - Styling: Tailwind CSS
-- Database: To be decided by the team
-- Authentication: To be decided by the team
-- Hosting: To be decided by the team
+- Database: Supabase PostgreSQL, with Prisma ORM for the schema and migrations
+- Authentication: Auth.js v5 with email and password (Credentials provider); passwords are stored only as bcrypt hashes
+- Hosting: Vercel
 
 ## 8. Out-of-Scope Features
 

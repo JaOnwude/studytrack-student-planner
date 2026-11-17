@@ -1,0 +1,67 @@
+// StudyTrack database schema (Supabase PostgreSQL, managed by Prisma migrations).
+// Change tables here and run `npx prisma migrate dev --name <change>`;
+// do not edit tables in the Supabase dashboard, or the schema will drift.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  passwordHash  String         @map("password_hash")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  assignments   Assignment[]
+  studySessions StudySession[]
+
+  @@map("users")
+}
+
+enum AssignmentStatus {
+  PENDING
+  COMPLETED
+}
+
+model Assignment {
+  id          String           @id @default(cuid())
+  userId      String           @map("user_id")
+  title       String
+  description String?
+  dueDate     DateTime         @map("due_date")
+  status      AssignmentStatus @default(PENDING)
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, dueDate])
+  @@map("assignments")
+}
+
+enum StudySessionStatus {
+  PLANNED
+  COMPLETED
+  CANCELLED
+}
+
+model StudySession {
+  id              String             @id @default(cuid())
+  userId          String             @map("user_id")
+  topic           String
+  scheduledAt     DateTime           @map("scheduled_at")
+  durationMinutes Int                @map("duration_minutes")
+  notes           String?
+  status          StudySessionStatus @default(PLANNED)
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, scheduledAt])
+  @@map("study_sessions")
+}
