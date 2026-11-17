@@ -16,3 +16,26 @@ export const loginSchema = z.object({
 
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+
+const assignmentFields = {
+  title: z.string().trim().min(1, "Enter an assignment title.").max(200, "Title must be 200 characters or fewer."),
+  description: z.string().trim().max(2000, "Description must be 2000 characters or fewer."),
+  dueDate: z.iso.date("Enter a valid due date."),
+  status: z.enum(["PENDING", "COMPLETED"]),
+};
+
+export const assignmentSchema = z.object({
+  ...assignmentFields,
+  description: assignmentFields.description.optional().default(""),
+  status: assignmentFields.status.optional(),
+});
+
+// For edits: any subset of the fields (no defaults, so unsent fields stay unchanged),
+// but at least one.
+export const assignmentUpdateSchema = z
+  .object(assignmentFields)
+  .partial()
+  .refine((value) => Object.values(value).some((v) => v !== undefined), "Nothing to update.");
+
+export type AssignmentInput = z.infer<typeof assignmentSchema>;
+export type AssignmentUpdate = z.infer<typeof assignmentUpdateSchema>;
