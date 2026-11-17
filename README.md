@@ -103,10 +103,11 @@ Checks the code with ESLint, if this script is configured in `package.json`.
 
 ## Team members
 
-- **Onwude James Uchenna** 
-- **Nsikak Christopher Eyo** 
-- **Precious Ayomide Fabiyi** 
-- **Phoebe** — Team member; participation pending
+## Team members
+
+- **Onwude James Uchenna** (team leader): database, authentication, team coordination
+- **Nsikak Christopher Eyo**: homepage, navigation, API hello endpoint
+- **Precious Ayomide Fabiyi**: assignment management
 
 Update team roles and participation as the team agrees.
 
