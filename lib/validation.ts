@@ -39,3 +39,33 @@ export const assignmentUpdateSchema = z
 
 export type AssignmentInput = z.infer<typeof assignmentSchema>;
 export type AssignmentUpdate = z.infer<typeof assignmentUpdateSchema>;
+
+const studySessionFields = {
+  topic: z.string().trim().min(1, "Enter what you will study.").max(200, "Topic must be 200 characters or fewer."),
+  // An exact moment in time (ISO 8601 with a time zone, e.g. "2026-11-20T14:00:00.000Z").
+  // The browser converts the student's local date and time before sending it.
+  scheduledAt: z.iso.datetime({ offset: true, error: "Choose a valid date and time." }),
+  durationMinutes: z.coerce
+    .number({ error: "Enter the length in minutes." })
+    .int("Enter a whole number of minutes.")
+    .min(5, "A session must be at least 5 minutes.")
+    .max(600, "A session can be at most 600 minutes (10 hours)."),
+  notes: z.string().trim().max(2000, "Notes must be 2000 characters or fewer."),
+  status: z.enum(["PLANNED", "COMPLETED", "CANCELLED"]),
+};
+
+export const studySessionSchema = z.object({
+  ...studySessionFields,
+  notes: studySessionFields.notes.optional().default(""),
+  status: studySessionFields.status.optional(),
+});
+
+// For edits: any subset of the fields (no defaults, so unsent fields stay unchanged),
+// but at least one.
+export const studySessionUpdateSchema = z
+  .object(studySessionFields)
+  .partial()
+  .refine((value) => Object.values(value).some((v) => v !== undefined), "Nothing to update.");
+
+export type StudySessionInput = z.infer<typeof studySessionSchema>;
+export type StudySessionUpdate = z.infer<typeof studySessionUpdateSchema>;

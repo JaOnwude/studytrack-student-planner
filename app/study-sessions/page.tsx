@@ -1,40 +1,26 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import StudySessionManager from "@/components/study-sessions/StudySessionManager";
+import { requireUser } from "@/lib/dal";
+import { listStudySessions } from "@/lib/study-sessions";
 
-import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Study Sessions",
+};
 
 export default function StudySessionsPage() {
-    return (
-        <section className="mx-auto max-w-5xl space-y-6">
-            <div>
-                <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                    Study Sessions
-                </h1>
+  return (
+    // With cacheComponents on, anything that reads the session must sit inside Suspense.
+    <Suspense fallback={<p className="text-slate-600">Loading your study sessions…</p>}>
+      <StudySessions />
+    </Suspense>
+  );
+}
 
-                <p className="mt-2 text-slate-600">
-                    Organize your study time and stay focused on your
-                    academic goals.
-                </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 className="text-xl font-semibold text-slate-900">
-                    Study Session Planner
-                </h2>
-
-                <p className="mt-3 text-slate-600">
-                    Study session scheduling and tracking are coming soon.
-                    This feature will help you plan study activities and
-                    manage your learning time effectively.
-                </p>
-
-                <div className="mt-6">
-                    <Link
-                        href="/dashboard"
-                        className="inline-flex rounded-lg bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                    >
-                        Back to Dashboard
-                    </Link>
-                </div>
-            </div>
-        </section>
-    );
+// Loads the signed-in student's sessions on the server for the first render.
+// After that, StudySessionManager talks to /api/study-sessions from the browser.
+async function StudySessions() {
+  const user = await requireUser();
+  const sessions = await listStudySessions(user.id);
+  return <StudySessionManager initialSessions={sessions} />;
 }
