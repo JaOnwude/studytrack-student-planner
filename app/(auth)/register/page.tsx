@@ -5,6 +5,8 @@ import { RegisterForm } from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
   title: "Create account",
+  description:
+    "Create a free StudyTrack account to plan assignments, track deadlines, and schedule study sessions.",
 };
 
 export default function RegisterPage() {

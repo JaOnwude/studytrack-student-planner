@@ -6,6 +6,8 @@ import { listStudySessions } from "@/lib/study-sessions";
 
 export const metadata: Metadata = {
   title: "Study Sessions",
+  description:
+    "Plan study sessions, mark them completed or cancelled, and see how many minutes you have studied.",
 };
 
 export default function StudySessionsPage() {
