@@ -121,10 +121,12 @@ Update team roles and participation as the team agrees.
 
 ## Project links
 
+## Project links
+
 - Repository: [StudyTrack on GitHub](https://github.com/JaOnwude/studytrack-student-planner)
-- GitHub Project board: To be added
-- Project specification: To be added
-- Deployed application: To be added
+- GitHub Project board: [StudyTrack board](https://github.com/users/JaOnwude/projects/1)
+- Project specification: [specs/specification.md](specs/specification.md) (detailed MVP spec: [specs/001-study-planner/spec.md](specs/001-study-planner/spec.md))
+- Deployed application: [studytrack-student-planner.vercel.app](https://studytrack-student-planner.vercel.app)
 
 ## Next.js resources
 
