@@ -49,6 +49,10 @@ All assignment routes need a signed-in student (401 otherwise) and only ever see
 | `POST /api/assignments` | `{ title, description?, dueDate }` | `201 { assignment }`, or `400 { error, fieldErrors }` |
 | `PATCH /api/assignments/:id` | any of `{ title, description, dueDate, status }` | `{ assignment }`, or 404 if it isn't yours |
 | `DELETE /api/assignments/:id` | | `204`, or 404 if it isn't yours |
+| `GET /api/study-sessions` | | `{ studySessions: [...] }`, earliest first |
+| `POST /api/study-sessions` | `{ topic, scheduledAt (ISO date-time), durationMinutes (5-600), notes? }` | `201 { studySession }`, or `400 { error, fieldErrors }` |
+| `PATCH /api/study-sessions/:id` | any of `{ topic, scheduledAt, durationMinutes, notes, status }` (`PLANNED`, `COMPLETED`, `CANCELLED`) | `{ studySession }`, or 404 if it isn't yours |
+| `DELETE /api/study-sessions/:id` | | `204`, or 404 if it isn't yours |
 
 ### Rules for features that touch student data
 

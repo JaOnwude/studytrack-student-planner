@@ -5,6 +5,8 @@ import { LoginForm } from "@/components/auth/login-form";
 
 export const metadata: Metadata = {
   title: "Log in",
+  description:
+    "Log in to StudyTrack to see your assignments, deadlines, and study sessions.",
 };
 
 export default function LoginPage() {

@@ -6,6 +6,8 @@ import { requireUser } from "@/lib/dal";
 
 export const metadata: Metadata = {
   title: "Dashboard",
+  description:
+    "Your StudyTrack overview: assignment progress and what is due next.",
 };
 
 export default function DashboardPage() {

@@ -6,6 +6,8 @@ import { requireUser } from "@/lib/dal";
 
 export const metadata: Metadata = {
   title: "Assignments",
+  description:
+    "Add, edit, complete, and delete your assignments and due dates.",
 };
 
 export default function AssignmentsPage() {
