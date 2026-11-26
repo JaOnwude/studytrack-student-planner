@@ -1,5 +1,12 @@
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+    title: "Deadlines",
+    description:
+        "Track upcoming assignment deadlines, prioritize academic tasks, and stay organized with StudyTrack.",
+};
 
 export default function DeadlinesPage() {
     return (
